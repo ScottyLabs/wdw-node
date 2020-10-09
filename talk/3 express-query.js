@@ -8,7 +8,7 @@ app.get("/", (req, res) => {
 
 app.get("/hello", (req, res) => {
   if (req.query.name) {
-    res.send(`Hello there, ${name}!`);
+    res.send(`Hello there, ${req.query.name}!`);
   } else {
     res.send("Who goes there, stranger?");
   }
