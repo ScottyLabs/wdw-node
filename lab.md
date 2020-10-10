@@ -9,7 +9,10 @@ Welcome to WDW 2020! In this lab, we will be having a hands-on learning experien
 
 ## Table of Contents
 > 1. [Setup](#setup)
-> 2. [Start]($tart)
+> 2. [Starting Your Express App](#starting-your-express-app)
+> 3. [Sending Data](#sending-data)
+> 4. [Request Parameters](#request-parameters)
+> 5. [Testing with Postman](#testing-with-postman)
 
 ## Setup
 Install both Node.JS and Postman normally. Once that is done, create a folder on your computer called `node-lab`. We will be working on the lab inside this folder. Inside this directory, create a file called `index.js`. This will be your starter file and where you will develop your server code. Additionally, download the [data file][data-file] and place it in your lab folder as well.
@@ -147,7 +150,7 @@ app.get("/location/time/:day/:hour/:min", (req, res) => {
 });
 ```
 
-## Testing
+## Testing with Postman
 You might be wondering, how would you go about passing parameters with spaces like searching for "La Prima", for example? This is where Postman comes in handy. Make sure that your server is running, then launch Postman. You'll see an orange layout and a field where you can enter a request URL. Enter the URL you would use to find information about a specific location but use `:name` instead of an actual name.
 
 ![Postman name](./assets/postman-request-param.png)
