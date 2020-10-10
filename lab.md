@@ -120,42 +120,43 @@ $ node index.js
 ```
 then check your browser and go to [http://localhost:5000/locations]. You should see a huge chunk of JSON data identical to what is found in your `dining.json` file.
 
-## Request Parameters
-Now what if you only want to get specific data and the huge dataset all at once? What if you only want to know the information about La Prima? In this section, we will be building an endpoint that responds to specific request parameters.
+## Query Parameters
+Now what if you only want to get specific data and the huge dataset all at once? What if you only want to know the information about La Prima? In this section, we will be building an endpoint that responds to specific query parameters.
 
 Once again, create another block of code:
 ```javascript
-app.get("/location/:name", (req, res) => {
+app.get("/location", (req, res) => {
+  const queryName = req.query.name;
   const filteredLocations = []
   for (location of dining.locations) {
-    if (location.name.includes(req.params.name)) {
+    if (location.name.includes(queryName)) {
       filteredLocations.push(location);
     }
   }
   res.json(filteredLocations);
 });
 ```
-You might have noticed that our route looks a bit different this time. The `:name` in our route refers to the `name` parameter that we will be using in our route handler. This means that the parameter gets passed into our URL so that requests sent to `/location/underground` or `/location/prima` all get sent to this handler.
+In our handler function, you can see that we define a variable `queryName`. This corresponds to the name of the location that we are searching. As you learned in the talk, you can send parameters with GET requests in the form of `/location?name=<name>`. When that gets passed to our function here, the name that is passed as an argument is then accessible through the `req.query` object.
 
-How our function works is here is that you are creating a list of filtered locations to search for all locations in our dining dataset that contain the queried keyword.
+Now algorithmically speaking, our function here works by creating a shortlist of locations in our dining dataset containing the queried keyword.
 
-Try this out yourself by running your program and sending a request to `/location/prima`. 
+Try this out yourself by running your program and sending a request to `/location?name=prima`. 
 
 Don't see anything? This is because if you look at the dataset, there's only an entry for La **P**rima, but you're searching for **p**rima. I'll leave this as an exercise for you to figure out how to solve :)
 
 As another exercise, design a route that returns what restaurants are open at a specific time of the day. Tinker with the data that is accessible to you through `dining.json`. Here's a boilerplate to get you started:
 ```javascript
-app.get("/location/time/:day/:hour/:min", (req, res) => {
+app.get("/location/time", (req, res) => {
   // Your code here
 });
 ```
 
 ## Testing with Postman
-You might be wondering, how would you go about passing parameters with spaces like searching for "La Prima", for example? This is where Postman comes in handy. Make sure that your server is running, then launch Postman. You'll see an orange layout and a field where you can enter a request URL. Enter the URL you would use to find information about a specific location but use `:name` instead of an actual name.
+You might be wondering, how would you go about passing parameters with spaces like searching for "La Prima"? If you tried this on your browser, you'd probably end up searching it up on Google. This is where Postman comes in handy. Make sure that your server is running, then launch Postman. You'll see an orange layout and a field where you can enter a request URL. Don't worry about putting the query parameter with the question mark yet.
 
-![Postman name](./assets/postman-request-param.png)
+![Postman name](./assets/postman-query-param.png)
 
-You'll notice another section on Postman appear with the option to fill in path variables. Here, you can actually enter a value with spaces like the word "La Prima". This is just the tip of the iceberg that is using Postman. It will come in handy as you dive into your journey of backend development.
+Instead, you'll notice a section below that says *Query Params*. There, you can enter your key, `name`, and your value like `La Prima`, for example. Here, you can actually enter a value with spaces and the possibilities are ✨ limitless ✨
 
 Well, that's it for this lab! Stay tuned for the next talk on React where you will learn how to build a frontend to display this content in a more readable manner to your users.
 
