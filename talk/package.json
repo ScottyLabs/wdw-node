@@ -1,7 +1,7 @@
 {
   "name": "wdw-node",
   "version": "1.0.0",
-  "description": "Contains starter files and lab documents for the WDW talk on RESTful APIs\r with Node.JS and Express",
+  "description": "Contains starter files and lab documents for the Crash Course talk on RESTful APIs\r with Node.JS and Express",
   "main": "1 node-starter.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

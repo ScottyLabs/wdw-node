@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 
 app.get("/", (req, res) => {
-  res.send("WDW 2020");
+  res.send("Crash Course 2021");
 });
 
 app.get("/hello", (req, res) => {
